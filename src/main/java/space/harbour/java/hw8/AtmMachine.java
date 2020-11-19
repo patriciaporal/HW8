@@ -1,6 +1,10 @@
 package space.harbour.java.hw8;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeSet;
 
 public class AtmMachine {
     private Map<Integer, Integer> bill;
@@ -22,7 +26,7 @@ public class AtmMachine {
     public synchronized Integer getAtmBalance() {
         int atmbalance = 0;
         for (Integer denominator : bill.keySet()) {
-            atmbalance = atmbalance + ( denominator * bill.get(denominator) );
+            atmbalance = atmbalance + (denominator * bill.get(denominator));
         }
         return atmbalance;
     }
@@ -36,7 +40,7 @@ public class AtmMachine {
             int denomination = iter.next();
             int noOfNotes = amt < denomination ? 0 : amt / denomination;
             returnedMap.put(denomination, noOfNotes);
-            amt = amt - ( denomination * noOfNotes );
+            amt = amt - (denomination * noOfNotes);
             reduceBalance(denomination, noOfNotes);
         }
         return returnedMap;
@@ -49,8 +53,6 @@ public class AtmMachine {
         bills.put(20, 10);
         bills.put(50, 10);
 
-        AtmMachine atm = new AtmMachine(bills);
-
         int amount = 0;
         System.out.println("Enter Amount");
         Scanner input = new Scanner(System.in);
@@ -60,6 +62,7 @@ public class AtmMachine {
             return;
         }
 
+        AtmMachine atm = new AtmMachine(bills);
         AtmUser user = new AtmUser(atm, amount, 1600);
         Thread userThread1 = new Thread(user);
         userThread1.start();
