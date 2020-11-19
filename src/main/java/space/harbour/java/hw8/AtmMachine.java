@@ -1,9 +1,6 @@
 package space.harbour.java.hw8;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class AtmMachine {
     private Map<Integer, Integer> bill;
@@ -23,11 +20,11 @@ public class AtmMachine {
     }
 
     public synchronized Integer getAtmBalance() {
-        int balance = 0;
+        int atmbalance = 0;
         for (Integer denominator : bill.keySet()) {
-            balance = balance + (denominator * bill.get(denominator));
+            atmbalance = atmbalance + ( denominator * bill.get(denominator) );
         }
-        return balance;
+        return atmbalance;
     }
 
     public synchronized Map<Integer, Integer> withdrawAmt(int amt) {
@@ -39,7 +36,7 @@ public class AtmMachine {
             int denomination = iter.next();
             int noOfNotes = amt < denomination ? 0 : amt / denomination;
             returnedMap.put(denomination, noOfNotes);
-            amt = amt - (denomination * noOfNotes);
+            amt = amt - ( denomination * noOfNotes );
             reduceBalance(denomination, noOfNotes);
         }
         return returnedMap;
@@ -53,7 +50,17 @@ public class AtmMachine {
         bills.put(50, 10);
 
         AtmMachine atm = new AtmMachine(bills);
-        AtmUser user = new AtmUser(atm, 1800, 1600);
+
+        int amount = 0;
+        System.out.println("Enter Amount");
+        Scanner input = new Scanner(System.in);
+        amount = input.nextInt();
+        if (amount % 5 != 0) {
+            System.out.println("Invalid Amount");
+            return;
+        }
+
+        AtmUser user = new AtmUser(atm, amount, 1600);
         Thread userThread1 = new Thread(user);
         userThread1.start();
     }
