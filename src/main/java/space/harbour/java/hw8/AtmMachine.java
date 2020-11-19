@@ -19,12 +19,12 @@ public class AtmMachine {
     private synchronized void reduceBalance(int denomination, int noToReduce) {
         int amt = bill.get(denomination);
         bill.remove(denomination);
-        bill.put(denomination, amt-noToReduce);
+        bill.put(denomination, amt - noToReduce);
     }
 
-    public synchronized Integer getATMBalance() {
+    public synchronized Integer getAtmBalance() {
         int balance = 0;
-        for(Integer denominator: bill.keySet()){
+        for(Integer denominator : bill.keySet()) {
             balance = balance + (denominator * bill.get(denominator));
         }
         return balance;
@@ -35,9 +35,9 @@ public class AtmMachine {
         TreeSet<Integer> denominations = new TreeSet<Integer>(bill.keySet());
         Iterator<Integer> iter = denominations.descendingIterator();
 
-        while(amt > 0 && amt < getATMBalance()) {
+        while(amt > 0 && amt < getAtmBalance()) {
             int denomination = iter.next();
-            int noOfNotes = amt<denomination ? 0 : amt / denomination;
+            int noOfNotes = amt < denomination ? 0 : amt / denomination;
             returnedMap.put(denomination, noOfNotes);
             amt = amt - (denomination * noOfNotes);
             reduceBalance(denomination, noOfNotes);
@@ -45,7 +45,7 @@ public class AtmMachine {
         return returnedMap;
     }
 
-    public static void main(String agrs[]) {
+    public static void main(String[] agrs) {
         Map<Integer, Integer> bills = new HashMap<Integer, Integer>();
         bills.put(5, 20);
         bills.put(10, 20);

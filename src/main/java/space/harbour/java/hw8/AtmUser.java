@@ -16,7 +16,7 @@ public class AtmUser implements Runnable {
     public void run() {
         System.out.println("Current Balance: £" + balance);
         System.out.println("Withdrawing: £" + amountToWithdraw);
-        if (amountToWithdraw < balance && amountToWithdraw < atm.getATMBalance()) {
+        if (amountToWithdraw < balance && amountToWithdraw < atm.getAtmBalance()) {
             System.out.println("Amount Withdrawn: " + atm.withdrawAmt(amountToWithdraw));
         }
         if (amountToWithdraw > balance) {
