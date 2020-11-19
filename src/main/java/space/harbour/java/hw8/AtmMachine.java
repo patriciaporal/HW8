@@ -24,9 +24,8 @@ public class AtmMachine {
 
     public synchronized Integer getAtmBalance() {
         int balance = 0;
-        for(Integer denominator : bill.keySet()) {
+        for (Integer denominator : bill.keySet())
             balance = balance + (denominator * bill.get(denominator));
-        }
         return balance;
     }
 
@@ -35,7 +34,7 @@ public class AtmMachine {
         TreeSet<Integer> denominations = new TreeSet<Integer>(bill.keySet());
         Iterator<Integer> iter = denominations.descendingIterator();
 
-        while(amt > 0 && amt < getAtmBalance()) {
+        while (amt > 0 && amt < getAtmBalance()) {
             int denomination = iter.next();
             int noOfNotes = amt < denomination ? 0 : amt / denomination;
             returnedMap.put(denomination, noOfNotes);
