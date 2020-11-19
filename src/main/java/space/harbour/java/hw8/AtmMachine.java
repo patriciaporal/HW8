@@ -25,7 +25,7 @@ public class AtmMachine {
     public synchronized Integer getAtmBalance() {
         int balance = 0;
         for (Integer denominator : bill.keySet()) {
-            balance = balance + ( denominator * bill.get(denominator) );
+            balance = balance + (denominator * bill.get(denominator));
         }
         return balance;
     }
