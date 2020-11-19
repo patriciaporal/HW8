@@ -47,13 +47,13 @@ public class AtmMachine {
 
     public static void main(String[] agrs) {
         Map<Integer, Integer> bills = new HashMap<Integer, Integer>();
-        bills.put(5, 20);
-        bills.put(10, 20);
-        bills.put(20, 20);
-        bills.put(50, 20);
+        bills.put(5, 10);
+        bills.put(10, 10);
+        bills.put(20, 10);
+        bills.put(50, 10);
 
         AtmMachine atm = new AtmMachine(bills);
-        AtmUser user = new AtmUser(atm, 1800, 1800);
+        AtmUser user = new AtmUser(atm, 1800, 1600);
         Thread userThread1 = new Thread(user);
         userThread1.start();
     }
