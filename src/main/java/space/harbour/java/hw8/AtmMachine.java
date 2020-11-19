@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
 
-public class ATMMachine {
+public class AtmMachine {
     private Map<Integer, Integer> bill;
 
-    public ATMMachine(Map<Integer, Integer> bills){
+    public AtmMachine(Map<Integer, Integer> bills){
         bill = bills;
     }
 
@@ -52,8 +52,8 @@ public class ATMMachine {
         bills.put(20, 20);
         bills.put(50, 20);
 
-        ATMMachine atm = new ATMMachine(bills);
-        ATMUser user = new ATMUser(atm, 1900, 1800);
+        AtmMachine atm = new AtmMachine(bills);
+        AtmUser user = new AtmUser(atm, 1900, 1800);
         Thread userThread1 = new Thread(user);
         userThread1.start();
     }

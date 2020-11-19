@@ -1,12 +1,12 @@
 package space.harbour.java.hw8;
 
-public class ATMUser implements Runnable {
+public class AtmUser implements Runnable {
 
     private final int balance;
-    ATMMachine atm;
+    AtmMachine atm;
     int amountToWithdraw;
 
-    public ATMUser(ATMMachine atm, int amountToWithdraw, int balance) {
+    public AtmUser(AtmMachine atm, int amountToWithdraw, int balance) {
         this.atm = atm;
         this.amountToWithdraw = amountToWithdraw;
         this.balance = balance;
